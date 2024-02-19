@@ -1,13 +1,12 @@
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
   const {
     public: { apiBase },
   } = useRuntimeConfig();
-
+  const loginToken = getCookie(event, "Login-token");
   try {
-    const data = await $fetch(`${apiBase}/auth/login`, {
+    const data = await $fetch(`${apiBase}/auth/resend-otp`, {
       method: "POST",
-      body: body,
+      body: { login_token: loginToken },
       headers: {
         Accept: "application/json",
       },
@@ -19,8 +18,9 @@ export default defineEventHandler(async (event) => {
       path: "/",
     });
 
-    return "login success";
+    return "otp Resend";
   } catch (error) {
     return error;
   }
 });
+

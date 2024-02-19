@@ -18,12 +18,15 @@
               class="form-control"
               id="cellphone" />
           </div>
-          <button type="submit" class="btn btn-primary btn-auth">
-            <div
-              v-if="loading"
-              class="spinner-border spinner-border-sm ms-2"></div>
-            ورود
-          </button>
+         
+            <button type="submit" class="btn btn-primary btn-auth">
+              <div
+                v-if="loading"
+                class="spinner-border spinner-border-sm ms-2"></div>
+              ورود
+            </button>
+          
+   
         </form>
       </div>
     </div>
@@ -31,7 +34,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['showCheckOtpForm'])
+const emit = defineEmits(["showCheckOtpForm"]);
 import { useToast } from "vue-toastification";
 const toast = useToast();
 const errors = ref([]);
@@ -51,10 +54,9 @@ async function login() {
       body: {
         cellphone: cellphone.value,
       },
-     
     });
-    toast.success('کد ورود برای شما ارسال شد')
-    emit('showCheckOtpForm')
+    toast.success("کد ورود برای شما ارسال شد");
+    emit("showCheckOtpForm");
   } catch (error) {
     errors.value = Object.values(error.data.data.message).flat();
   } finally {

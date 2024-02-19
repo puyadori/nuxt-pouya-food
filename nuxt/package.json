@@ -11,13 +11,13 @@
   },
   "devDependencies": {
     "nuxt": "^3.9.3",
-    "vue": "^3.4.14",
+    "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "^2.1.2",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.11.3",
-    "i": "^0.3.7",
     "leaflet": "^1.9.4",
     "npm": "^10.4.0",
     "vue-toastification": "^2.0.0-rc.5",

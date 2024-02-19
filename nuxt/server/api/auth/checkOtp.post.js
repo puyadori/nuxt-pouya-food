@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         login_token: loginToken,
       },
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
       },
     });
 

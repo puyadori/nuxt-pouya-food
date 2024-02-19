@@ -9,30 +9,35 @@
         </ul>
       </div>
       <div class="form_container">
-        <form @submit.prevent="checkOtp">
-          <div class="mb-3">
-            <label class="form-label">کد ورود</label>
-            <input
-              v-model="otp"
-              type="text"
-              class="form-control"
-              id="cellphone" />
-          </div>
-          <button type="submit" class="btn btn-primary btn-auth">
+        <div class="mb-3">
+          <label class="form-label">کد ورود</label>
+          <input
+            v-model="otp"
+            type="text"
+            class="form-control"
+            id="cellphone" />
+        </div>
+        <div class="d-flex align-items justify-content-between">
+          <button
+            @click="checkOtp"
+            type="submit"
+            class="btn btn-primary btn-auth">
             <div
               v-if="loading"
               class="spinner-border spinner-border-sm ms-2"></div>
             تایید
           </button>
-        </form>
+          <AuthResendOtp @resend-otp-errors="(err) => (errors = err)" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const { authUser } = useAuth()
+const { authUser } = useAuth();
 import { useToast } from "vue-toastification";
+
 const toast = useToast();
 const errors = ref([]);
 const otp = ref("");
@@ -58,8 +63,9 @@ async function checkOtp() {
         otp: otp.value,
       },
     });
-    toast.success('با موفقیت وارد شدید')
-    authUser.value = data
+    toast.success("با موفقیت وارد شدید");
+    authUser.value = data;
+    return navigateTo("/");
   } catch (error) {
     errors.value = Object.values(error.data.data.message).flat();
   } finally {

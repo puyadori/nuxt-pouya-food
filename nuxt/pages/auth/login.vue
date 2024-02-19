@@ -4,7 +4,9 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-4 offset-md-4">
-          <AuthLogin v-if="!showOtpForm" @show-check-otp-form="chamgeForm" />
+          <AuthLogin
+            v-if="!showOtpForm"
+            @show-check-otp-form="() => (showOtpForm = true)" />
           <AuthCheckOtp v-else />
         </div>
       </div>
@@ -14,8 +16,6 @@
 </template>
 
 <script setup>
+definePageMeta({ middleware: "auth-middle" });
 const showOtpForm = ref(false);
-function chamgeForm() {
-  showOtpForm.value = true;
-}
 </script>
