@@ -1,7 +1,7 @@
 <template>
   <slider />
-  <features />
+  <!-- <features />
   <productTabs />
   <AboutUs/>
-  <contactUs/>
+  <contactUs/> -->
 </template>
